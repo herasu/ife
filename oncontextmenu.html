@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		#menu{
+			width: 200px;
+			height: 80px;
+			border: 2px outset rgba(0,0,0,0.3);
+			border-radius: 10px;
+            display: none;
+            background-color: white;
+            position: absolute;
+		}
+		#menu ul li{
+			padding: 10px;
+			height: 20px;
+			line-height: 20px;
+			font-size: large;
+			list-style-type: none;
+		}
+		#main{
+			border: 2px outset rgba(0,0,0,0.3);
+			border-radius: 10px;
+			background-color: rgba(0,0,0,0.1);
+			width: 900px;
+			height: 50px;
+			line-height: 50px;
+			margin: 20px;
+			font-family: "微软雅黑";
+			font-weight: bold;
+		}
+	</style>
+	<body>
+		<div id="main">Right Click</div>
+		<div id="menu">
+			<ul>
+				<li>Muse Item 1</li>
+				<li>Muse Item 2</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		document.getElementById("main").oncontextmenu = function(e){
+			var x= e.clientX;
+			var y = e.clientY;
+			var winW = document.body.scrollWidth;
+			var winH = document.body.scrollHeight;
+			var menu = document.getElementById("menu");
+			menu.style.display = 'block';
+			//右下角交叉部分
+			if(x>(winW-200)&&y>(winH-80)){
+				menu.style.left = (x-200)+'px';
+				menu.style.top = (y-80)+'px';
+			}else if(x>(winW-200)&&y<=(winH-80)){
+				//超出右边区域
+				menu.style.left = (x-200)+'px';
+				menu.style.top = y+'px';
+			}else if(x<=(winW-200)&&y>(winH-80)) {
+				//超出下面区域
+				menu.style.left = x+'px';
+				menu.style.top = (y-80)+'px';
+			}else{
+				menu.style.left = x+'px';
+				menu.style.top = y+'px';
+			}
+			return false;
+			
+		};
+	</script>
+</html>
