@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/three.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body onload="init()">
+		<canvas id="mainCanvas" width="800px"height="600px"></canvas>
+	</body>
+	<script type="text/javascript">
+		function init(){
+			var PI = 3.14;
+			var renderer = new THREE.WebGLRenderer({
+				canvas:document.getElementById("mainCanvas")
+			});
+			renderer.setClearColor(0xA0A0A0);
+			var scene = new THREE.Scene();
+			var camera = new THREE.OrthographicCamera(-8,8, 6, -6, 1, 20);
+			camera.position.set(0,0,5);
+			camera.position.set(4,3,5);
+			camera.lookAt(new THREE.Vector3(0, 0, 0));
+			scene.add(camera);
+			
+			var wheelGeometry = new THREE.TorusGeometry(0.4, 0.2, 20, 20);
+			var material = new THREE.MeshLambertMaterial({
+				color:0xffffff,
+//				emissive: 0xff0000 //自发光
+//				opacity: 0.75
+//wireframe:true
+			});
+			
+			var wheel1 = new THREE.Mesh(wheelGeometry,material);
+            wheel1.position.set(-2,-1.3,1.5);
+            wheel1.rotation.set(0,0,0);
+		    scene.add(wheel1);
+		    var wheel2 = new THREE.Mesh(wheelGeometry,material);
+            wheel2.position.set(2,-1.3,1.5);
+            wheel2.rotation.set(0,0,0);
+		    scene.add(wheel2);
+		    var wheel3 = new THREE.Mesh(wheelGeometry,material);
+            wheel3.position.set(-2,-1.3,-1.5);
+            wheel3.rotation.set(0,0,0);
+		    scene.add(wheel3);
+		    var wheel4 = new THREE.Mesh(wheelGeometry,material);
+            wheel4.position.set(2,-1.3,-1.5);
+            wheel4.rotation.set(0,0,0);
+		    scene.add(wheel4);
+		    
+		    
+		    var carGeometry = new THREE.CubeGeometry(8, 2.5, 3);
+		    var car = new THREE.Mesh(carGeometry,material);
+		    scene.add(car);
+		    
+		    //光
+		    var light = new THREE.DirectionalLight();
+            light.position.set(2, 5, 3);
+            scene.add(light);
+		    renderer.render(scene, camera);
+		}
+	</script>
+</html>
