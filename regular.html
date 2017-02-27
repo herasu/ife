@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			<h3>判断给定数字是否为手机号码</h3>
+			<input type="number" name="phone" id="phone" value="" />
+		    <button id="btnPhone">确认</button>
+		</div>
+		<div>
+			<h3>判断输入的字符串是否有相邻重复单词</h3>
+			<input type="text" name="string" id="string" value="" />
+		    <button id="btnString">确认</button>
+		</div>
+		
+	</body>
+	<script type="text/javascript">
+	"use strict"
+	    var pa1 = new RegExp("^1[34578][0-9]{9}$");
+	    var pa2 = /\b(\w+)\b\s+\b\1\b/;
+		document.getElementById("btnPhone").onclick = function(){
+			let phone = document.getElementById("phone").value;
+			alert(pa1.test(phone));
+		};
+		document.getElementById("btnString").onclick = function(){
+			let stringN =document.getElementById("string").value;
+			alert(pa2.test(stringN));
+		}
+		
+	</script>
+</html>
