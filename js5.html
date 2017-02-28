@@ -51,7 +51,7 @@
 	    var sortBtn = document.getElementById("sort-btn");
 	    
 	    //绑定点击效果
-	    leftIn.onclick = function(){
+	    leftIn.addEventListener('click',function(){
 	    	var num = document.getElementById("num").value;
 	    	if(10<=num&&num<=100){
 	    		data.unshift(num);
@@ -60,8 +60,8 @@
 	    		alert("输入的数值不在10-100，请修改");
 	    	}
 	    	showLi(data);
-	    }
-	    rightIn.onclick = function(){
+	    });
+	    rightIn.addEventListener('click',function(){
 	    	var num = document.getElementById("num").value;
 	    	if(10<=num&&num<=100){
 	    		data.push(num);
@@ -72,19 +72,18 @@
 	    	
 	    	showLi(data);
 	    	
-	    }
-	    leftOut.onclick = function(){
+	    });
+	    leftOut.addEventListener('click',function(){
 	    	data.shift();
 	    	showLi(data);	    	
-	    }
-	    rightOut.onclick = function(){
+	    });
+	    rightOut.addEventListener('click',function(){
 	    	data.pop();
 	    	showLi(data);	    	
-	    }
-	    sortBtn.onclick = function(){
+	    });
+	    sortBtn.addEventListener('click',function(){
 	    	bubbleSort(data);
-	    	showLi(data);
-	    }
+	    });
 
 	    
 	    //显示效果
@@ -112,18 +111,30 @@
 	    		ul.removeChild(_li[i]);
 	    	}
 	    }
-	    //冒泡排序
+
 	    function bubbleSort(arr){
-	    	var len = arr.length;
-	    	for(var i = 0; i < len;i++){
-	    		for(var j = 0; j<len-1-i;j++){
-	    			if(arr[j]>arr[j+1]){
-	    				var temp = arr[j+1];
-	    				arr[j+1] = arr[j];
-	    				arr[j] = temp;
-	    			}
-	    		}
-	    	}
+	    	var len = arr.length,i=0,j=0;
+	    	var timer = setInterval(function(){
+                if(i<len){
+                	if(j<len-1){
+                		if(arr[j]>arr[j+1]){
+                			var temp = arr[j+1];
+                			arr[j+1] = arr[j];
+                			arr[j] = temp;
+                			showLi(arr);
+                		}
+                		j++;
+                	}else{
+                        j = 0;
+                        i++;
+                	}
+                    
+                }else{
+                    clearInterval(timer);
+                }
+                
+	    	},500);
+	    	
 	    	return arr;
 	    }
 		 
