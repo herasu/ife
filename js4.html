@@ -52,29 +52,21 @@
 	    var rightIn = document.getElementById("push");
 	    var leftOut = document.getElementById("shift");
 	    var rightOut = document.getElementById("pop");
+	    var ul = document.getElementsByTagName("ul")[0];
 	    
 	    
-	    //绑定点击效果
-	    leftIn.onclick = function(){
-	    	var num = document.getElementById("num").value;
-	    	data.unshift(num);
-	    	showLi(data);
-	    }
-	    rightIn.onclick = function(){
-	    	var num = document.getElementById("num").value;
-	    	data.push(num);
-	    	showLi(data);
-	    	
-	    }
-	    leftOut.onclick = function(){
-	    	data.shift();
-	    	showLi(data);	    	
-	    }
-	    rightOut.onclick = function(){
-	    	data.pop();
-	    	showLi(data);	    	
-	    }
 	    
+	    
+	    function Del(){
+	    	for(var i = 0;i<li.length;i++){
+	    	    li[i].index = i;
+	    	    li[i].onclick = function(){
+	    	        data.splice(this.index,1);
+	    	        showLi(data);
+	            }
+	     
+	        }
+	    }
 	    //显示效果
 	    function showLi(data){
 	    	removeAllLi();
@@ -85,12 +77,35 @@
 	    	}
 	    }
 	    function removeAllLi(){
-	    	var ul = document.getElementsByTagName("ul")[0];
+//	    	var ul = document.getElementsByTagName("ul")[0];
 	    	var _li = ul.getElementsByTagName('li');
 	    	for(var i=_li.length-1;i>=0;i--){
 	    		ul.removeChild(_li[i]);
 	    	}
 	    }
+	    leftIn.onclick = function(){
+	    	var num = document.getElementById("num").value;
+	    	data.unshift(num);
+	    	showLi(data);
+	    }
+	    rightIn.onclick = function(){
+	    	var num = document.getElementById("num").value;
+	    	data.push(num);
+	    	showLi(data);
+	    }
+	    leftOut.onclick = function(){
+	    	data.shift();
+	    	showLi(data);	
+	    }
+	    rightOut.onclick = function(){
+	    	data.pop();
+	    	showLi(data);	
+	    }
+	    
+	    ul.onclick = function(){
+	    	Del();
+	    }
+	   
 		 
 	</script>
 </html>
